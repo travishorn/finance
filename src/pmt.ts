@@ -28,11 +28,11 @@ export default (
   nper: number,
   pv: number,
   fv: number = 0,
-  type: number = 0
+  type: boolean = false
 ): number => {
   if (rate === 0) return (-fv - pv) / nper;
 
-  const tmp = type !== 0 ? 1 + rate : 1;
+  const tmp = type ? 1 + rate : 1;
   const tmp2 = rate + 1;
   const tmp3 = Math.pow(tmp2, nper);
 

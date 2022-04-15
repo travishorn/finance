@@ -23,8 +23,8 @@ export default (
   per: number,
   nper: number,
   pv: number,
-  fv: number,
-  type: number
+  fv?: number,
+  type?: boolean
 ): number => {
   if (per <= 0 || per >= nper + 1) throw new Error("Invalid period");
 
