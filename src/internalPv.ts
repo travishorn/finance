@@ -4,26 +4,26 @@
 // --------------------------------------------------------------------
 //
 
-export default (values: number[], guess: number) => {
+export default (values: number[], guess: number): number => {
   guess = typeof guess === "undefined" ? 0.1 : guess;
 
-  var lowerBound = 0;
-  var upperBound = values.length - 1;
+  let lowerBound = 0;
+  const upperBound = values.length - 1;
 
-  var tempTotal = 0;
-  var divRate = 1 + guess;
+  let tmpTotal = 0;
+  const divRate = 1 + guess;
 
   while (lowerBound <= upperBound && values[lowerBound] === 0) {
     lowerBound++;
   }
 
-  var i = upperBound;
-  var step = -1;
+  let i = upperBound;
+  const step = -1;
 
   while (i >= lowerBound) {
-    tempTotal = tempTotal / divRate;
-    tempTotal = tempTotal + values[i];
+    tmpTotal = tmpTotal / divRate;
+    tmpTotal = tmpTotal + values[i];
     i = i + step;
   }
-  return tempTotal;
+  return tmpTotal;
 };

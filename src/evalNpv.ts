@@ -10,19 +10,19 @@ export default (
   npvType: number,
   lowerBound: number,
   upperBound: number
-) => {
-  var tempVar = 1;
-  var tempTotal = 0;
-  var i = lowerBound;
+): number => {
+  let tmp = 1;
+  let tmpTotal = 0;
+  let i = lowerBound;
 
   while (i <= upperBound) {
-    var tempVar2 = values[i];
-    tempVar = tempVar + tempVar * rate;
+    const tmp2 = values[i];
+    tmp = tmp + tmp * rate;
 
-    if (!(npvType > 0 && tempVar2 > 0) || !(npvType < 0 && tempVar2 < 0)) {
-      tempTotal = tempTotal + tempVar2 / tempVar;
+    if (!(npvType > 0 && tmp2 > 0) || !(npvType < 0 && tmp2 < 0)) {
+      tmpTotal = tmpTotal + tmp2 / tmp;
     }
     i++;
   }
-  return tempTotal;
+  return tmpTotal;
 };

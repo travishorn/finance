@@ -12,15 +12,15 @@ export default (
   pv: number,
   fv: number,
   type: number
-) => {
+): number => {
   if (rate === 0) {
     return pv + pmt * nper + fv;
   } else {
-    var tempVar3 = rate + 1;
-    var tempVar = Math.pow(tempVar3, nper);
+    const tmp3 = rate + 1;
+    const tmp = Math.pow(tmp3, nper);
 
-    var tempVar2 = type !== 0 ? 1 + rate : 1;
+    const tmp2 = type !== 0 ? 1 + rate : 1;
 
-    return pv * tempVar + (pmt * tempVar2 * (tempVar - 1)) / rate + fv;
+    return pv * tmp + (pmt * tmp2 * (tmp - 1)) / rate + fv;
   }
 };
