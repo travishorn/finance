@@ -31,25 +31,18 @@ export default (
   per: number,
   nper: number,
   pv: number,
-  fvx: number,
-  type: number
+  fvx: number = 0,
+  type: number = 0
 ) => {
-  type = typeof type === "undefined" ? 0 : type;
-  fvx = typeof fvx === "undefined" ? 0 : fvx;
+  const tmp = type !== 0 ? 2 : 1;
 
-  var tempVar = type !== 0 ? 2 : 1;
+  if (per <= 0 || per >= nper + 1) throw new Error("Invalid period");
 
-  if (per <= 0 || per >= nper + 1) {
-    throw new Error("Invalid period");
-  }
+  if (type !== 0 && per === 1) return 0;
 
-  if (type !== 0 && per === 1) {
-    return 0;
-  }
+  const pmtx = pmt(rate, nper, pv, fvx, type);
+  const pv2 = type !== 0 ? pv + pmtx : pv;
+  const tmpFV = fv(rate, per - tmp, pmtx, pv2);
 
-  var pmtx = pmt(rate, nper, pv, fvx, type);
-  pv = type !== 0 ? pv + pmtx : pv;
-  var tempVarFV = fv(rate, per - tempVar, pmtx, pv);
-
-  return tempVarFV * rate;
+  return tmpFV * rate;
 };

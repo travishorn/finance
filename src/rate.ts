@@ -32,35 +32,29 @@ export default (
   nperx: number,
   pmt: number,
   pv: number,
-  fv: number,
-  type: number,
-  guess: number
+  fv: number = 0,
+  type: number = 0,
+  guess: number = 0.1
 ) => {
-  type = typeof type === "undefined" ? 0 : type;
-  fv = typeof fv === "undefined" ? 0 : fv;
-  guess = typeof guess === "undefined" ? 0.1 : guess;
-
-  if (nperx <= 0) {
-    throw new Error("Invalid period");
-  }
+  if (nperx <= 0) throw new Error("Invalid period");
 
   // Variables for epsilon max and step from Microsoft reference docs.
-  var epslMax = 0.0000001;
-  var step = 0.00001;
+  const epslMax = 0.0000001;
+  const step = 0.00001;
   // Microsoft reference docs show 40 iterations (i = 0 to 39)
   // But I was running into undefined errors when the Guess was
   // Far off the actual Rate.  Increasing the iterations to 129
   // (i = 0 to 128) allowed enough iterations to get rates
   // Within 8 decimal places of Excel for my test suite.
-  var iterMax = 128;
+  const iterMax = 128;
 
-  var Rate0 = guess;
-  var Y0 = evalRate(Rate0, nperx, pmt, pv, fv, type);
+  let Rate0 = guess;
+  let Y0 = evalRate(Rate0, nperx, pmt, pv, fv, type);
 
-  var Rate1 = Y0 > 0 ? Rate0 / 2 : Rate0 * 2;
-  var Y1 = evalRate(Rate1, nperx, pmt, pv, fv, type);
+  let Rate1 = Y0 > 0 ? Rate0 / 2 : Rate0 * 2;
+  let Y1 = evalRate(Rate1, nperx, pmt, pv, fv, type);
 
-  var i = 0;
+  let i = 0;
 
   while (i < iterMax) {
     if (Y1 === Y0) {
@@ -79,12 +73,13 @@ export default (
     if (Math.abs(Y0) < epslMax) {
       return Rate0;
     } else {
-      var tempVar = Y0;
+      let tmp = Y0;
+
       Y0 = Y1;
-      Y1 = tempVar;
-      tempVar = Rate0;
+      Y1 = tmp;
+      tmp = Rate0;
       Rate0 = Rate1;
-      Rate1 = tempVar;
+      Rate1 = tmp;
     }
     i++;
   }

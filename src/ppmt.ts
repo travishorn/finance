@@ -26,12 +26,10 @@ export default (
   fv: number,
   type: number
 ) => {
-  if (per <= 0 || per >= nper + 1) {
-    throw new Error("Invalid period");
-  }
+  if (per <= 0 || per >= nper + 1) throw new Error("Invalid period");
 
-  var pmtx = pmt(rate, nper, pv, fv, type);
-  var tempVarIPMT = ipmt(rate, per, nper, pv, fv, type);
+  const pmtx = pmt(rate, nper, pv, fv, type);
+  const tmpIPMT = ipmt(rate, per, nper, pv, fv, type);
 
-  return pmtx - tempVarIPMT;
+  return pmtx - tmpIPMT;
 };

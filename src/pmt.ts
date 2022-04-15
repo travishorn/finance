@@ -27,19 +27,14 @@ export default (
   rate: number,
   nper: number,
   pv: number,
-  fv: number,
-  type: number
+  fv: number = 0,
+  type: number = 0
 ) => {
-  type = typeof type === "undefined" ? 0 : type;
-  fv = typeof fv === "undefined" ? 0 : fv;
+  if (rate === 0) return (-fv - pv) / nper;
 
-  if (rate === 0) {
-    return (-fv - pv) / nper;
-  } else {
-    var tempVar = type !== 0 ? 1 + rate : 1;
-    var tempVar2 = rate + 1;
-    var tempVar3 = Math.pow(tempVar2, nper);
+  const tmp = type !== 0 ? 1 + rate : 1;
+  const tmp2 = rate + 1;
+  const tmp3 = Math.pow(tmp2, nper);
 
-    return ((-fv - pv * tempVar3) / (tempVar * (tempVar3 - 1))) * rate;
-  }
+  return ((-fv - pv * tmp3) / (tmp * (tmp3 - 1))) * rate;
 };

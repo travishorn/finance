@@ -17,17 +17,13 @@
 import evalNpv from "./evalNpv.js";
 
 export default (rate: number, ...values: number[]) => {
-  var lowerBound = 0;
-  var upperBound = values.length - 1;
-  var tempVar = upperBound - lowerBound + 1;
+  const lowerBound = 0;
+  const upperBound = values.length - 1;
+  const tmp = upperBound - lowerBound + 1;
 
-  if (tempVar < 1) {
-    throw new Error("Invalid values");
-  }
+  if (tmp < 1) throw new Error("Invalid values");
 
-  if (rate === -1) {
-    throw new Error("Invalid rate");
-  }
+  if (rate === -1) throw new Error("Invalid rate");
 
   return evalNpv(rate, values, 0, lowerBound, upperBound);
 };

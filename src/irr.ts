@@ -16,87 +16,72 @@
 
 import internalPv from "./internalPv.js";
 
-export default (values: number[], guess: number) => {
-  guess = typeof guess === "undefined" ? 0.1 : guess;
-
-  var epslMax = 0.0000001;
-  var step = 0.00001;
-  var iterMax = 39;
+export default (values: number[], guess: number = 0.1) => {
+  const epslMax = 0.0000001;
+  const step = 0.00001;
+  const iterMax = 39;
 
   //Check for valid inputs
-  if (guess <= -1) {
-    throw new Error("Invalid guess");
-  }
+  if (guess <= -1) throw new Error("Invalid guess");
 
-  if (values.length < 1) {
-    return null;
-  }
+  if (values.length < 1) return null;
 
   //Scale up the Epsilon Max based on cash flow values
-  var tempVar = values[0] > 0 ? values[0] : values[0] * -1;
-  var i = 0;
+  let tmp = values[0] > 0 ? values[0] : values[0] * -1;
 
-  while (i < values.length) {
-    if (Math.abs(values[i]) > tempVar) {
-      tempVar = Math.abs(values[i]);
-    }
-    i++;
-  }
+  values.forEach((value) => {
+    if (Math.abs(value) > tmp) tmp = Math.abs(value);
+  });
 
-  const tempNpvEpsl = tempVar * epslMax * 0.01;
+  const tmpNpvEpsl = tmp * epslMax * 0.01;
 
-  let tempRate0 = guess;
-  let tempNpv0 = internalPv(values, tempRate0);
+  let tmpRate0 = guess;
+  let tmpNpv0 = internalPv(values, tmpRate0);
 
-  var tempRate1 = tempNpv0 > 0 ? tempRate0 + step : tempRate0 - step;
+  let tmpRate1 = tmpNpv0 > 0 ? tmpRate0 + step : tmpRate0 - step;
 
-  if (tempRate1 <= -1) {
-    throw new Error("Invalid values");
-  }
+  if (tmpRate1 <= -1) throw new Error("Invalid values");
 
-  var tempNpv1 = internalPv(values, tempRate1);
+  let tmpNpv1 = internalPv(values, tmpRate1);
 
-  var i = 0;
+  let i = 0;
 
   while (i <= iterMax) {
-    if (tempNpv1 === tempNpv0) {
-      tempRate0 = tempRate1 > tempRate0 ? tempRate0 - step : tempRate0 + step;
+    if (tmpNpv1 === tmpNpv0) {
+      tmpRate0 = tmpRate1 > tmpRate0 ? tmpRate0 - step : tmpRate0 + step;
 
-      tempNpv0 = internalPv(values, tempRate0);
+      tmpNpv0 = internalPv(values, tmpRate0);
 
-      if (tempNpv1 === tempNpv0) {
+      if (tmpNpv1 === tmpNpv0) {
         throw new Error("Invalid values");
       }
     }
 
-    tempRate0 =
-      tempRate1 - ((tempRate1 - tempRate0) * tempNpv1) / (tempNpv1 - tempNpv0);
+    tmpRate0 =
+      tmpRate1 - ((tmpRate1 - tmpRate0) * tmpNpv1) / (tmpNpv1 - tmpNpv0);
 
     //Secant method
-    if (tempRate0 <= -1) {
-      tempRate0 = (tempRate1 - 1) * 0.5;
-    }
+    if (tmpRate0 <= -1) tmpRate0 = (tmpRate1 - 1) * 0.5;
 
     //Give the algorithm a second chance...
-    tempNpv0 = internalPv(values, tempRate0);
-    tempVar =
-      tempRate0 > tempRate1 ? tempRate0 - tempRate1 : tempRate1 - tempRate0;
+    tmpNpv0 = internalPv(values, tmpRate0);
+    tmp = tmpRate0 > tmpRate1 ? tmpRate0 - tmpRate1 : tmpRate1 - tmpRate0;
 
-    var tempVar2 = tempNpv0 > 0 ? tempNpv0 : tempNpv0 * -1;
+    const tmp2 = tmpNpv0 > 0 ? tmpNpv0 : tmpNpv0 * -1;
 
     //Test for npv = 0 and rate convergence
-    if (tempVar2 < tempNpvEpsl && tempVar < epslMax) {
-      return tempRate0;
-    }
+    if (tmp2 < tmpNpvEpsl && tmp < epslMax) return tmpRate0;
+
     //Transfer values and try again...
-    tempVar = tempNpv0;
-    tempNpv0 = tempNpv1;
-    tempNpv1 = tempVar;
-    tempVar = tempRate0;
-    tempRate0 = tempRate1;
-    tempRate1 = tempVar;
+    tmp = tmpNpv0;
+    tmpNpv0 = tmpNpv1;
+    tmpNpv1 = tmp;
+    tmp = tmpRate0;
+    tmpRate0 = tmpRate1;
+    tmpRate1 = tmp;
 
     i++;
   }
+
   throw new Error("Maximum iterations exceeded");
 };
