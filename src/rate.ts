@@ -35,7 +35,7 @@ export default (
   fv: number = 0,
   type: number = 0,
   guess: number = 0.1
-) => {
+): number => {
   if (nperx <= 0) throw new Error("Invalid period");
 
   // Variables for epsilon max and step from Microsoft reference docs.
@@ -63,9 +63,7 @@ export default (
       Y0 = evalRate(Rate0, nperx, pmt, pv, fv, type);
     }
 
-    if (Y1 === Y0) {
-      return "#NUM!";
-    }
+    if (Y1 === Y0) throw new Error("Cannot calculate RATE");
 
     Rate0 = Rate1 - ((Rate1 - Rate0) * Y1) / (Y1 - Y0);
     Y0 = evalRate(Rate0, nperx, pmt, pv, fv, type);

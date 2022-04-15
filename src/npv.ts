@@ -16,7 +16,7 @@
 
 import evalNpv from "./evalNpv.js";
 
-export default (rate: number, ...values: number[]) => {
+export default (rate: number, ...values: number[]): number => {
   const lowerBound = 0;
   const upperBound = values.length - 1;
   const tmp = upperBound - lowerBound + 1;

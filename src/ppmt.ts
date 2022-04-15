@@ -25,7 +25,7 @@ export default (
   pv: number,
   fv: number,
   type: number
-) => {
+): number => {
   if (per <= 0 || per >= nper + 1) throw new Error("Invalid period");
 
   const pmtx = pmt(rate, nper, pv, fv, type);

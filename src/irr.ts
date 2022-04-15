@@ -16,7 +16,7 @@
 
 import internalPv from "./internalPv.js";
 
-export default (values: number[], guess: number = 0.1) => {
+export default (values: number[], guess: number = 0.1): number => {
   const epslMax = 0.0000001;
   const step = 0.00001;
   const iterMax = 39;

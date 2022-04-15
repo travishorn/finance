@@ -29,7 +29,7 @@ export default (
   pv: number,
   fv: number = 0,
   type: number = 0
-) => {
+): number => {
   if (rate === 0) return (-fv - pv) / nper;
 
   const tmp = type !== 0 ? 1 + rate : 1;

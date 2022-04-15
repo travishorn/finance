@@ -26,7 +26,7 @@ export default (
   pv: number,
   fv: number = 0,
   type: number = 0
-) => {
+): number => {
   if (rate === 0 && pmt === 0) throw new Error("Payment cannot be 0");
   if (rate === 0) return -(pv + fv) / pmt;
 

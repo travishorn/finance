@@ -33,7 +33,7 @@ export default (
   pv: number,
   fvx: number = 0,
   type: number = 0
-) => {
+): number => {
   const tmp = type !== 0 ? 2 : 1;
 
   if (per <= 0 || per >= nper + 1) throw new Error("Invalid period");
