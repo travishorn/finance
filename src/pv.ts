@@ -18,7 +18,13 @@
 // --------------------------------------------------------------------
 //
 
-export default (rate, nper, pmt, fv, type) => {
+export default (
+  rate: number,
+  nper: number,
+  pmt: number,
+  fv: number,
+  type: number
+) => {
   type = typeof type === "undefined" ? 0 : type;
   fv = typeof fv === "undefined" ? 0 : fv;
 

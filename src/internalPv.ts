@@ -4,7 +4,7 @@
 // --------------------------------------------------------------------
 //
 
-export default (values, guess) => {
+export default (values: number[], guess: number) => {
   guess = typeof guess === "undefined" ? 0.1 : guess;
 
   var lowerBound = 0;

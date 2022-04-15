@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import pmt from "../src/pmt.js";
+import pmt from "../dist/pmt.js";
 
 describe("pmt function", () => {
   it("matches Excel to 8 decimal places", () => {

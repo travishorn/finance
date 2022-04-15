@@ -28,7 +28,14 @@
 
 import evalRate from "./evalRate.js";
 
-export default (nperx, pmt, pv, fv, type, guess) => {
+export default (
+  nperx: number,
+  pmt: number,
+  pv: number,
+  fv: number,
+  type: number,
+  guess: number
+) => {
   type = typeof type === "undefined" ? 0 : type;
   fv = typeof fv === "undefined" ? 0 : fv;
   guess = typeof guess === "undefined" ? 0.1 : guess;

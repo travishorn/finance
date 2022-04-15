@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import rate from "../src/rate.js";
+import rate from "../dist/rate.js";
 
 describe("rate function", () => {
   it("matches Excel to 8 decimal places", () => {

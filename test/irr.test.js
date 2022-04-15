@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import irr from "../src/irr.js";
+import irr from "../dist/irr.js";
 
 describe("irr function", () => {
   it("matches Excel to 8 decimal places)", () => {

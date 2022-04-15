@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import fv from "../src/fv.js";
+import fv from "../dist/fv.js";
 
 describe("fv function", () => {
   it("matches Excel to 8 decimal places", () => {

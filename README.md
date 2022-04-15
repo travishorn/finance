@@ -30,8 +30,8 @@ format](https://github.com/microsoft/referencesource/blob/master/Microsoft.Visua
 The RATE formula in this document needed a couple tweaks, but performed with
 great precision compared to Excel.
 
-This library is an attempt to update tvm-financejs with ES module support, newer
-language features, a more functional approach, and (coming soon) TypeScript.
+This library is an attempt to rewrite tvm-financejs using TypeScript, ES module
+support, newer language features, and a more functional approach.
 
 ## Installation
 
@@ -46,7 +46,7 @@ npm install @travishorn/finance
 Using named exports:
 
 ```javascript
-import { pmt } from "finance";
+import { pmt } from "@travishorn/finance";
 
 // To calculate a payment:
 Math.round(pmt(0.0525, 5, -10000) * 100) / 100;
@@ -186,8 +186,8 @@ To run the test suites:
 npm test
 ```
 
-The Excel version is **Microsoft Excel for Office 365 MSO(16.0.12527.20260)
-32-bit**.
+The Excel version tested against is **Microsoft Excel for Office 365
+MSO(16.0.12527.20260) 32-bit**.
 
 ## License
 

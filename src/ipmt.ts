@@ -26,7 +26,14 @@
 import pmt from "./pmt.js";
 import fv from "./fv.js";
 
-export default (rate, per, nper, pv, fvx, type) => {
+export default (
+  rate: number,
+  per: number,
+  nper: number,
+  pv: number,
+  fvx: number,
+  type: number
+) => {
   type = typeof type === "undefined" ? 0 : type;
   fvx = typeof fvx === "undefined" ? 0 : fvx;
 

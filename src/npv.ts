@@ -16,7 +16,7 @@
 
 import evalNpv from "./evalNpv.js";
 
-export default (rate, ...values) => {
+export default (rate: number, ...values: number[]) => {
   var lowerBound = 0;
   var upperBound = values.length - 1;
   var tempVar = upperBound - lowerBound + 1;

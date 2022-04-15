@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import nper from "../src/nper.js";
+import nper from "../dist/nper.js";
 
 describe("nper function", () => {
   it("matches Excel to 8 decimal places", () => {

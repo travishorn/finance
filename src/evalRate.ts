@@ -5,7 +5,14 @@
 // --------------------------------------------------------------------
 //
 
-export default (rate, nper, pmt, pv, fv, type) => {
+export default (
+  rate: number,
+  nper: number,
+  pmt: number,
+  pv: number,
+  fv: number,
+  type: number
+) => {
   if (rate === 0) {
     return pv + pmt * nper + fv;
   } else {

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import pv from "../src/pv.js";
+import pv from "../dist/pv.js";
 
 describe("pv function", () => {
   it("matches Excel to 8 decimal places", () => {

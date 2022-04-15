@@ -18,7 +18,14 @@
 import ipmt from "./ipmt.js";
 import pmt from "./pmt.js";
 
-export default (rate, per, nper, pv, fv, type) => {
+export default (
+  rate: number,
+  per: number,
+  nper: number,
+  pv: number,
+  fv: number,
+  type: number
+) => {
   if (per <= 0 || per >= nper + 1) {
     throw new Error("Invalid period");
   }

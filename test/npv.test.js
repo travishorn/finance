@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import npv from "../src/npv.js";
+import npv from "../dist/npv.js";
 
 describe("npv function", () => {
   it("matches Excel to 8 decimal places)", () => {

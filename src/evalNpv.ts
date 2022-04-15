@@ -4,7 +4,13 @@
 // --------------------------------------------------------------------
 //
 
-export default (rate, values, npvType, lowerBound, upperBound) => {
+export default (
+  rate: number,
+  values: number[],
+  npvType: number,
+  lowerBound: number,
+  upperBound: number
+) => {
   var tempVar = 1;
   var tempTotal = 0;
   var i = lowerBound;
