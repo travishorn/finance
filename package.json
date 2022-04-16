@@ -1,6 +1,6 @@
 {
   "name": "@travishorn/finance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JavaScript library of common financial functions to be used in time value of money calculations.",
   "main": "./dist/index.js",
   "scripts": {
