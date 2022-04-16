@@ -1,10 +1,9 @@
-// --------------------------------------------------------------------
-// evalRate is a local helper function for the
-// RATE calculation.  It follows a similar
-// Pattern to the PMT formula above.
-// --------------------------------------------------------------------
-//
-
+/**
+ * Private helper function for the `rate` function.
+ * 
+ * @remarks
+ * Follows a similar pattern to the `pmt` formula.
+ */
 export default (
   rate: number,
   nper: number,

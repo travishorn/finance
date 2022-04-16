@@ -1,23 +1,27 @@
-// --------------------------------------------------------------------
-// This function calculates the portion of a regular payment that is
-// applied to principal based on rate, which period to calculate, the
-// total number of periods, and the present value.  The future value and
-// type are optional.
-//
-// ## Math:
-//
-// Since a regular payment is the essentially the Interest Payment plus
-// the Principal Payment:
-//
-// ppmt = pmt - ipmt
-//
-// Returns either a number or error message (as string).
-// --------------------------------------------------------------------
-//
+/*
+ * Math:
+ *
+ * Since a regular payment is the essentially the interest payment plus the
+ * principal payment:
+ *
+ * ppmt = pmt - ipmt
+ */
 
 import ipmt from "./ipmt.js";
 import pmt from "./pmt.js";
 
+/**
+ * Calculates the portion of a regular payment that is applied to principal.
+ * 
+ * @param rate - Interest rate per the period
+ * @param per - Specific period
+ * @param nper - Number of periods
+ * @param pv - Present value
+ * @param fv - Future value
+ * @param type - When payments are due. false = end of period (default). true =
+ * beginning of period
+ * @returns The portion of a regular payment that is applied to the principal
+ */
 export default (
   rate: number,
   per: number,

@@ -1,21 +1,20 @@
-// --------------------------------------------------------------------
-// This function calculates the net present value of a series of
-// payments at a constant rate.  It uses the helper function, evalNpv,
-// to assist in determining the value.  Between this function and
-// evalNpv, the math is as follows:
-//
-// ## Math:
-//
-//         Value 1        Value 2             Value N
-//  npv = ---------- + ------------- + ... -------------
-//        (1 + rate)   (1 + rate)^2         (1 + rate)^N
-//
-// Returns either a number or error message (as string).
-// --------------------------------------------------------------------
-//
+/*
+ * Math:
+ *
+ *        Value 1        Value 2             Value N
+ * npv = ---------- + ------------- + ... -------------
+ *       (1 + rate)   (1 + rate)^2         (1 + rate)^N
+ */
 
 import evalNpv from "./evalNpv.js";
 
+/**
+ * Calculate the net present value of a series of payments at a constant rate.
+ *
+ * @param rate - Interest rate per the period
+ * @param values - A set of periodic cash flows
+ * @returns The net present value
+ */
 export default (rate: number, ...values: number[]): number => {
   const lowerBound = 0;
   const upperBound = values.length - 1;

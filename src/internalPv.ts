@@ -1,9 +1,6 @@
-// --------------------------------------------------------------------
-// internalPv is a local helper function for the
-// IRR calculation.
-// --------------------------------------------------------------------
-//
-
+/**
+ * Private helper function for the `irr` function.
+ */
 export default (values: number[], guess: number): number => {
   guess = typeof guess === "undefined" ? 0.1 : guess;
 

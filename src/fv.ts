@@ -1,19 +1,23 @@
-/**
- * Calculate the future value given a set of transaction terms.
- * 
- * @remarks
+/*
+ * Math:
+ *
  *                                              (1+rate)^nper -1
  *  fv = -pv*(1+rate)^nper - pmt*(1+rate*type)*------------------
  *                                                   rate
  * 
  * If rate equals 0, there is no time value of money consideration and
  * fv = -pv - pmt * nper
+ */
+
+/**
+ * Calculate the future value given a set of transaction terms.
  * 
  * @param rate - Interest rate per the period
  * @param nper - Number of periods
  * @param pmt - Regular payment (must be equal in total value for all periods)
  * @param pv - Present value
- * @param type - When payments are due. 0 = end of period (default). 1 = beginning of period
+ * @param type - When payments are due. false = end of period (default). true =
+ * beginning of period
  * @returns The calculated future value
  */
 export default (

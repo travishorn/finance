@@ -1,21 +1,20 @@
-// --------------------------------------------------------------------
-// This function calculates the Internal Rate of Return (IRR) of a
-// series of regular cash flows.  Negative values represent
-// investments, and positive values represent returns.
-//
-// ## Math:
-//
-// Essentially, the algorithm uses the secant method to find a rate
-// where the net present value is equal to 0, stepping through the
-// calculations iteratively.  Once the rate is within the Epsilon
-// tolerance, the approximate rate is returned.
-//
-// Returns either a number or error message (as string).
-// --------------------------------------------------------------------
-//
-
 import internalPv from "./internalPv.js";
 
+/**
+ * Calculate the internal rate of return of a series of regular cash flows.
+ *
+ * @remarks
+ * Negative values represent investments, and positive values represent returns.
+ *
+ * Essentially, the algorithm uses the secant method to find a rate where the
+ * net present value is equal to 0, stepping through the calculations
+ * iteratively. Once the rate is within the Epsilon tolerance, the approximate
+ * rate is returned.
+ *
+ * @param values - A set of periodic cash flows
+ * @param guess - A guess at the rate
+ * @returns The internal rate of return
+ */
 export default (values: number[], guess: number = 0.1): number => {
   const epslMax = 0.0000001;
   const step = 0.00001;

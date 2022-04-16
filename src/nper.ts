@@ -1,25 +1,29 @@
-// --------------------------------------------------------------------
-// Calculates the number of periods based on rate, payment,
-// present value (as a negative).  Future value and type
-// (0 as in arrears, 1 as in advance) are optional fields.
-//
-// ## Math:
-//
-//                       -fv + pmt*(1_rate*type) / rate
-//     (1+rate)^nper = ----------------------------------
-//                        pv + pmt*(1+rate*type) / rate
-//
-// This output is then used in the log function.
-//
-// If rate equals zero, there is no time value of money
-// Calculations needed, and the function returns:
-//
-//     nper = (-fv - pv) / pmt
-//
-// Returns either a number or error message (as string).
-// --------------------------------------------------------------------
-//
+/*
+ * Math:
+ *
+ *                   -fv + pmt*(1_rate*type) / rate
+ * (1+rate)^nper = ----------------------------------
+ *                    pv + pmt*(1+rate*type) / rate
+ * 
+ * This output is then used in the log function.
+ * 
+ * If rate equals zero, there is no time value of money calculations needed, and
+ * the formula is: nper = (-fv - pv) / pmt
+ * 
+ */
 
+/**
+ * Calculate the number of periods based on rate, payment, present value (as a
+ * negative).
+ *
+ * @param rate - Interest rate per the period
+ * @param pmt - Regular payment (must be equal in total value for all periods)
+ * @param pv - Present value
+ * @param fv - Future value
+ * @param type - When payments are due. false = end of period (default). true =
+ * beginning of period
+ * @returns The number of periods
+ */
 export default (
   rate: number,
   pmt: number,

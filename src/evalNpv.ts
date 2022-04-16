@@ -1,9 +1,6 @@
-// --------------------------------------------------------------------
-// evalNpv is a local helper function for the
-// NPV calculation.
-// --------------------------------------------------------------------
-//
-
+/**
+ * Private helper function for the `npv` function.
+ */
 export default (
   rate: number,
   values: number[],

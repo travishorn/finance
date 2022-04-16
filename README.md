@@ -30,8 +30,9 @@ format](https://github.com/microsoft/referencesource/blob/master/Microsoft.Visua
 The RATE formula in this document needed a couple tweaks, but performed with
 great precision compared to Excel.
 
-This library is an attempt to rewrite tvm-financejs using TypeScript, ES module
-support, newer language features, and a more functional approach.
+This library is an attempt to refactor tvm-financejs using TypeScript, ES module
+support, native error handling, newer language features, and a more functional
+approach.
 
 ## Installation
 
@@ -77,17 +78,17 @@ Math.round(finance.pmt(0.0525, 5, -10000) * 100) / 100;
 
 ### Input Variables
 
-| Variable   | Description                                                                                |
-| :--------- | :----------------------------------------------------------------------------------------- |
-| **pv**     | present value                                                                              |
-| **fv**     | future value                                                                               |
-| **pmt**    | payment                                                                                    |
-| **nper**   | total number of periods                                                                    |
-| **per**    | a specific period, used in IPMT & PPMT                                                     |
-| **rate**   | rate for the period(s)                                                                     |
-| **type**   | when payments are due (0 for end of period/arrears, and 1 for beginning of period/advance) |
-| **guess**  | a guess at the rate, optional value for the RATE formula                                   |
-| **values** | a set of periodic cash flows                                                               |
+| Variable   | Description                                                                                   |
+| :--------- | :-------------------------------------------------------------------------------------------- |
+| **pv**     | Present value                                                                                 |
+| **fv**     | Future value                                                                                  |
+| **pmt**    | Payment                                                                                       |
+| **nper**   | Total number of periods                                                                       |
+| **per**    | A specific period                                                                             |
+| **rate**   | Rate for the period(s)                                                                        |
+| **type**   | When payments are due (`false` = end of period/arrears. `true` = beginning of period/advance) |
+| **guess**  | A guess at the rate                                                                           |
+| **values** | A set of periodic cash flows                                                                  |
 
 ### Present Value
 
