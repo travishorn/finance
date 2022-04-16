@@ -57,7 +57,7 @@ Math.round(pmt(0.0525, 5, -10000) * 100) / 100;
 Or default export:
 
 ```javascript
-import finance from "finance";
+import finance from "@travishorn/finance";
 
 // To calculate a payment:
 Math.round(finance.pmt(0.0525, 5, -10000) * 100) / 100;
