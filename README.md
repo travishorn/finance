@@ -36,7 +36,7 @@ approach.
 
 ## Installation
 
-Via npm (warning: not available yet)
+Via npm
 
 ```bash
 npm install @travishorn/finance
